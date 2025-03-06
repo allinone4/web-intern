@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debo Engineering | Career Portal</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Update navigation -->
+    <nav class="nav">
+      <a href="#" class="nav-brand">Debo Engineering</a>
+      <button class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#positions">Open Positions</a></li>
+        <li><a href="#apply">Apply</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li class="admin-only" style="display: none">
+          <a href="#admin">Admin Dashboard</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero" id="home">
+      <h1>Join Debo Engineering</h1>
+      <p>
+        Find your next career opportunity with us - from internships to senior
+        positions
+      </p>
+      <div class="search-section">
+        <div class="search-bar">
+          <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search by title, company, or keywords..."
+          />
+          <select class="search-input" id="levelSelect">
+            <option value="">All Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Early Beginner">Early Beginner</option>
+            <option value="Junior Developer">Junior Developer</option>
+            <option value="Mid-Level Developer">Mid-Level Developer</option>
+            <option value="Senior Developer">Senior Developer</option>
+            <option value="Tech Lead">Tech Lead</option>
+            <option value="Expert Developer">Expert Developer</option>
+            <option value="Master Developer">Master Developer</option>
+          </select>
+          <select class="search-input" id="positionType">
+            <option value="">All Types</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Internship-Paid">Paid Internship</option>
+            <option value="Internship-Unpaid">Unpaid Internship</option>
+          </select>
+          <button class="cta-button" id="searchButton">
+            <i class="fas fa-search"></i> Search
+          </button>
+        </div>
+        <div class="filter-tags">
+          <!-- Developer level tags will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Admin Login Button (visible only when not logged in) 
+    <div class="admin-login">
+      <button class="btn btn-secondary" id="adminLoginBtn">Admin Login</button>
+    </div>
+
+    <!-- Update Admin Panel 
+    <section id="adminPanel" class="admin-panel" style="display: none">
+      <h2>Admin Dashboard</h2>-->
+
+      <!-- Admin Navigation -->
+      <div class="admin-nav">
+        <button class="btn btn-primary active" data-tab="vacancies">
+          Job Vacancies
+        </button>
+        <button class="btn btn-secondary" data-tab="applications">
+          Applications
+        </button>
+        <button class="btn btn-info" data-tab="reports">Reports</button>
+      </div>
+
+      <!-- Job Vacancies Management -->
+      <div id="vacanciesTab" class="admin-tab active">
+        <div class="admin-controls">
+          <button class="btn btn-success" id="addVacancyBtn">
+            <i class="fas fa-plus"></i> Add New Vacancy
+          </button>
+          <div class="vacancy-filters">
+            <select id="vacancyLevelFilter">
+              <option value="">All Levels</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Early Beginner">Early Beginner</option>
+              <option value="Junior Developer">Junior Developer</option>
+              <option value="Mid-Level Developer">Mid-Level Developer</option>
+              <option value="Senior Developer">Senior Developer</option>
+              <option value="Tech Lead">Tech Lead</option>
+              <option value="Expert Developer">Expert Developer</option>
+              <option value="Master Developer">Master Developer</option>
+            </select>
+            <select id="vacancyStatusFilter">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="closed">Closed</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="vacancies-list">
+          <!-- Vacancies will be listed here -->
+        </div>
+      </div>
+
+      <!-- Add/Edit Vacancy Form Modal -->
+      <div id="vacancyFormModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Add New Vacancy</h3>
+          <form id="vacancyForm">
+            <div class="form-control">
+              <label for="jobTitle">Job Title*</label>
+              <input type="text" id="jobTitle" required />
+            </div>
+            <div class="form-control">
+              <label for="jobDescription">Job Description*</label>
+              <textarea id="jobDescription" required></textarea>
+            </div>
+            <div class="form-control">
+              <label for="requiredSkills">Required Skills*</label>
+              <textarea
+                id="requiredSkills"
+                placeholder="Enter skills, one per line"
+                required
+              ></textarea>
+            </div>
+            <div class="form-control">
+              <label for="experienceLevel">Experience Level*</label>
+              <select id="experienceLevel" required>
+                <option value="">Select Level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Early Beginner">Early Beginner</option>
+                <option value="Junior Developer">Junior Developer</option>
+                <option value="Mid-Level Developer">Mid-Level Developer</option>
+                <option value="Senior Developer">Senior Developer</option>
+                <option value="Tech Lead">Tech Lead</option>
+                <option value="Expert Developer">Expert Developer</option>
+                <option value="Master Developer">Master Developer</option>
+              </select>
+            </div>
+            <div class="form-control">
+              <label for="applicationDeadline">Application Deadline*</label>
+              <input type="date" id="applicationDeadline" required />
+            </div>
+            <div class="form-control">
+              <label for="vacancyType">Position Type*</label>
+              <select id="vacancyType" required>
+                <option value="Full-time">Full-time</option>
+                <option value="Internship-Paid">Paid Internship</option>
+                <option value="Internship-Unpaid">Unpaid Internship</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                Save Vacancy
+              </button>
+              <button type="button" class="btn btn-secondary" id="saveDraftBtn">
+                Save as Draft
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Internship Grid Section -->
+    <section id="internships" class="container mt-4">
+      <h2 class="text-center mb-4">Available Internships</h2>
+      <div class="internship-grid grid">
+        <!-- Internship cards will be dynamically inserted here -->
+      </div>
+    </section>
+
+    <!-- Add Application Form Section -->
+    <section id="apply" class="container mt-4">
+      <h2 class="text-center mb-4">Apply for Position</h2>
+      <form
+        id="internshipForm"
+        class="form-control"
+        action="api/applications.php"
+        method="POST"
+      >
+        <div class="form-control">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="zz" name="fullName" required />
+        </div>
+        <div class="form-control">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-control">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+        <div class="form-control">
+          <label for="developerLevel">Current Developer Level</label>
+          <select id="developerLevel" name="developerLevel" required>
+            <option value="">Select your level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Early Beginner">Early Beginner</option>
+            <option value="Junior Developer">Junior Developer</option>
+            <option value="Mid-Level Developer">Mid-Level Developer</option>
+            <option value="Senior Developer">Senior Developer</option>
+            <option value="Tech Lead">Tech Lead</option>
+            <option value="Expert Developer">Expert Developer</option>
+            <option value="Master Developer">Master Developer</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label for="education">Education</label>
+          <textarea id="education" name="education" required></textarea>
+        </div>
+        <div class="form-control">
+          <label for="experience">Experience & Skills</label>
+          <textarea
+            id="experience"
+            name="experience"
+            required
+            placeholder="Please describe your programming experience and technical skills..."
+          ></textarea>
+        </div>
+        <div class="form-control">
+          <label for="resume">Resume (PDF)</label>
+          <input type="file" id="resume" name="resume" accept=".pdf" required />
+        </div>
+        <div class="form-control">
+          <label for="portfolio">Portfolio/GitHub (Optional)</label>
+          <input
+            type="url"
+            id="portfolio"
+            name="portfolio"
+            placeholder="https://github.com/yourusername"
+          />
+        </div>
+        <div class="form-control">
+          <label for="coverLetter">Cover Letter</label>
+          <textarea id="coverLetter" name="coverLetter" required></textarea>
+        </div>
+        <div class="form-control">
+          <label for="applicationType">Application Type</label>
+          <select id="applicationType" name="applicationType" required>
+            <option value="">Select Application Type</option>
+            <option value="internship">Internship</option>
+            <option value="fulltime">Full-time Position</option>
+          </select>
+        </div>
+        <div class="form-control gada-classification">
+          <h3>Gada System Classification</h3>
+          <p>Please select your current level based on experience:</p>
+          <div class="level-selection">
+            <div class="level-option">
+              <input
+                type="radio"
+                id="level1"
+                name="gadaLevel"
+                value="Beginner"
+              />
+              <label for="level1">
+                <h4>Beginner</h4>
+                <p>0-1 year experience, basic programming knowledge</p>
+              </label>
+            </div>
+            <!-- Add other levels -->
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Submit Application
+        </button>
+      </form>
+    </section>
+
+    <!-- Enhanced Internship Cards -->
+    <div class="internship-card">
+      <span class="card-badge">New</span>
+      <h3>Software Development Intern</h3>
+      <!-- ... rest of card content ... -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>
+            We connect talented students with leading companies for meaningful
+            internship opportunities.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#internships">Browse Internships</a></li>
+            <li><a href="#apply">Apply Now</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> contact@internportal.com</li>
+            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-map-marker-alt"></i> New York, NY</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ... existing scripts ... -->
+
+    <button class="hamburger-menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </body>
+</html>
